@@ -272,21 +272,32 @@
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            labels: ["","Vektorräume / Unterräume", "Lineare Unabhängigkeit", "EZS und Basis", "Lineare Abbildungen",
+                "Matrizen", "LGS", "Lösungen von GLS", "Determinanten"],
             datasets: [{
-                data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+                label: "Deine benötigte Zeit",
+                data: [0, 4, 16, 22, 22, 30, 36, 44, 45],
                 lineTension: 0,
                 backgroundColor: 'transparent',
-                borderColor: '#007bff',
+                borderColor: '#c2000e',
                 borderWidth: 4,
-                pointBackgroundColor: '#007bff'
-            }]
+                pointBackgroundColor: '#c2000e'
+            },
+                {   label: "Durchschnitt aller Studenten",
+                    data: [0, 8, 12, 20, 24, 36, 39, 43, 45],
+                    lineTension: 0,
+                    backgroundColor: 'transparent',
+                    borderColor: '#5d5b5e',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#5d5b5e'
+                }
+            ]
         },
         options: {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: false
+                        beginAtZero: true
                     }
                 }]
             },
