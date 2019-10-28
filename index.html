@@ -117,7 +117,7 @@
                 </div>
             </div>
 
-            <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
+            <canvas class="my-4" id="mixChart" width="900" height="380"></canvas>
 
             <h2>Section title</h2>
             <div class="table-responsive">
@@ -268,44 +268,89 @@
 <!-- Graphs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <script>
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-        type: 'line',
+    var labels = ["","Vektorräume / Unterräume", "Lineare Unabhängigkeit", "EZS und Basis", "Lineare Abbildungen",
+        "Matrizen", "LGS", "Lösungen von GLS", "Determinanten"];
+
+    var time = [
+        0, 4, 16, 22, 22, 30, 36, 44, 45
+    ];
+    var avgtime = [
+        0, 8, 12, 20, 24, 36, 39, 43, 45
+    ];
+    var eco =[10, 20, 10, 40, 20, 30, 15, 45, 20];
+
+    var mix = document.getElementById("mixChart").getContext('2d');
+    var mixChart = new Chart(mix, {
+        type: 'bar',
         data: {
-            labels: ["","Vektorräume / Unterräume", "Lineare Unabhängigkeit", "EZS und Basis", "Lineare Abbildungen",
-                "Matrizen", "LGS", "Lösungen von GLS", "Determinanten"],
-            datasets: [{
-                label: "Deine benötigte Zeit",
-                data: [0, 4, 16, 22, 22, 30, 36, 44, 45],
-                lineTension: 0,
-                backgroundColor: 'transparent',
-                borderColor: '#c2000e',
-                borderWidth: 4,
-                pointBackgroundColor: '#c2000e'
-            },
-                {   label: "Durchschnitt aller Studenten",
-                    data: [0, 8, 12, 20, 24, 36, 39, 43, 45],
+            labels: labels,
+            datasets: [
+                {
+                    type: 'line',
+                    label: "Time",
+                    data: time,
                     lineTension: 0,
+                    borderColor: '#c2000e',
                     backgroundColor: 'transparent',
+                    yAxisID: 'time',
+                },
+                {
+                    type: 'line',
+                    label: "Average Time",
+                    data: avgtime,
+                    lineTension: 0,
                     borderColor: '#5d5b5e',
-                    borderWidth: 4,
-                    pointBackgroundColor: '#5d5b5e'
+                    backgroundColor: 'transparent',
+                    yAxisID: 'avgtime',
+                },
+                {
+                    label: "Eco Points",
+                    data: eco,
+                    borderColor: 'transparent',
+                    backgroundColor: 'rgba(91,192,78,0.5)',
+                    yAxisID: 'ecopoints',
                 }
             ]
         },
         options: {
             scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
+                yAxes: [
+                    {
+                        id: "time",
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    },
+                    {
+                        id: "avgtime",
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Average Time'
+                        }
+                    },
+                    {
+                        id: "ecopoints",
+                        position: 'right',
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Eco Points'
+                        }
+                    },
+                ]
             },
-            legend: {
-                display: false,
-            }
         }
     });
+
 </script>
 </body>
 </html>
